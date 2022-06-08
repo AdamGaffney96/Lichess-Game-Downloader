@@ -54,6 +54,6 @@ with open(os.path.dirname(os.path.realpath(__file__))+"/last_pgn.pgn", "r+") as 
     file.write("\n".join(downloaded_games).replace("AdamGaffney96", "Gaffney, Adam"))
     
 with open(os.path.dirname(os.path.realpath(__file__))+"/last_export.txt", "r+") as file:
-    file.write(date.today())
+    file.write(str(date.today()))
 
 os.startfile(os.path.dirname(os.path.realpath(__file__))+"/last_pgn.pgn")
