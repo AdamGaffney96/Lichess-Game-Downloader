@@ -18,7 +18,7 @@ sys.excepthook = show_exception_and_exit
 API_TOKEN = config("TOKEN")
 PLAYER_NAME = config("PLAYER_NAME")
 # I added this as I like all my games to link up to my real name in Chessbase (e.g. Smith, J rather than my lichess username)
-PLAYER_NAME_FORMATTED = config("PLAYER_NAME_FORMATTED")
+PLAYER_NAME_FORMATTED = config("PLAYER_FORMATTED")
 
 # Uses berserk to connect to the session
 session = berserk.TokenSession(API_TOKEN)
