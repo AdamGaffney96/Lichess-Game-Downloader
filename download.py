@@ -50,6 +50,8 @@ end = berserk.utils.to_millis(datetime(end_year, end_month, end_day))
 
 downloaded_games = client.games.export_by_player("AdamGaffney96", since=start, until=end, max=300, as_pgn=True, perf_type="rapid", clocks=True, opening=True)
 
+open(os.path.dirname(os.path.realpath(__file__))+"/last_pgn.pgn", "w").close()
+
 with open(os.path.dirname(os.path.realpath(__file__))+"/last_pgn.pgn", "r+") as file:
     file.write("\n".join(downloaded_games).replace("AdamGaffney96", "Gaffney, Adam"))
     
