@@ -13,7 +13,8 @@ import sys
 sys.excepthook = show_exception_and_exit
 
 API_TOKEN = config("TOKEN")
-API_LINK = "https://lichess.org/api/games/user/AdamGaffney96?tags=true&clocks=true&evals=false&opening=true&since=1653001200000&until=1654556400000&perfType=rapid"
+PLAYER_NAME = config("PLAYER_NAME")
+PLAYER_NAME_FORMATTED = config("PLAYER_NAME_FORMATTED")
 
 session = berserk.TokenSession(API_TOKEN)
 client = berserk.Client(session=session)
@@ -48,12 +49,12 @@ print(end_year, end_month, end_day)
 start = berserk.utils.to_millis(datetime(start_year, start_month, start_day))
 end = berserk.utils.to_millis(datetime(end_year, end_month, end_day))
 
-downloaded_games = client.games.export_by_player("AdamGaffney96", since=start, until=end, max=300, as_pgn=True, perf_type="rapid", clocks=True, opening=True)
+downloaded_games = client.games.export_by_player(PLAYER_NAME, since=start, until=end, max=300, as_pgn=True, perf_type="rapid", clocks=True, opening=True)
 
 open(os.path.dirname(os.path.realpath(__file__))+"/last_pgn.pgn", "w").close()
 
 with open(os.path.dirname(os.path.realpath(__file__))+"/last_pgn.pgn", "r+") as file:
-    file.write("\n".join(downloaded_games).replace("AdamGaffney96", "Gaffney, Adam"))
+    file.write("\n".join(downloaded_games).replace(PLAYER_NAME, PLAYER_NAME_FORMATTED))
     
 with open(os.path.dirname(os.path.realpath(__file__))+"/last_export.txt", "r+") as file:
     file.write(str(date.today()))
