@@ -66,7 +66,7 @@ open(os.path.dirname(os.path.realpath(__file__))+"/last_pgn.pgn", "w").close()
 
 # Adds games in PGN format to file and then adds todays date to last_export.txt
 with open(os.path.dirname(os.path.realpath(__file__))+"/last_pgn.pgn", "r+") as file:
-    file.write("\n".join(downloaded_games).replace(PLAYER_NAME, PLAYER_NAME_FORMATTED))
+    file.write("\n".join(downloaded_games).replace(PLAYER_NAME, PLAYER_NAME_FORMATTED).replace("Rated Rapid game", "Rapid games"))
     
 with open(os.path.dirname(os.path.realpath(__file__))+"/last_export.txt", "r+") as file:
     file.write(str(date.today()))
